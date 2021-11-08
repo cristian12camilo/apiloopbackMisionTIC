@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Estacion} from './estacion.model';
 
 @model()
 export class Ruta extends Entity {
@@ -9,17 +10,7 @@ export class Ruta extends Entity {
   })
   id?: string;
 
-  @property({
-    type: 'string',
-    required: true,
-  })
-  origen: string;
 
-  @property({
-    type: 'string',
-    required: true,
-  })
-  destino: string;
 
   @property({
     type: 'number',
@@ -27,6 +18,11 @@ export class Ruta extends Entity {
   })
   tiempo_estimado: number;
 
+  @belongsTo(() => Estacion, {name: 'origenFk'})
+  origen: string;
+
+  @belongsTo(() => Estacion, {name: 'destinoFk'})
+  destino: string;
 
   constructor(data?: Partial<Ruta>) {
     super(data);
