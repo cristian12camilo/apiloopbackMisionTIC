@@ -31,6 +31,8 @@ export class UsuarioController {
     public servicioAuth: AuthService
   ) { }
 
+  //----------------------------------------------------------------------
+  @authenticate.skip() // Servicio no Requiere token
   @post('/usuarios')
   @response(200, {
     description: 'Usuario model instance',
